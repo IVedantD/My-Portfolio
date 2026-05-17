@@ -1,351 +1,157 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/Nav";
+import orbs from "@/assets/orbs.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Vedant Damedhar — Full Stack Developer" },
+      { title: "Vedant Damedhar — Hello" },
       {
         name: "description",
         content:
-          "Vedant Damedhar — full-stack developer in Pune. Web, mobile and AI products built with React, FastAPI, Node and Flutter.",
+          "Hello, I'm Vedant. Builder, learner, quietly making things on the internet.",
       },
-      { property: "og:title", content: "Vedant Damedhar — Full Stack Developer" },
-      { property: "og:description", content: "Web, mobile and AI products. Built in Pune." },
-      { property: "og:type", content: "website" },
+      { property: "og:title", content: "Vedant Damedhar — Hello" },
+      { property: "og:description", content: "A small personal corner of the internet." },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Nunito+Sans:wght@300;400;500;600&display=swap",
       },
     ],
   }),
   component: Index,
 });
 
-const experiences = [
-  {
-    period: "2026 →",
-    role: "Full Stack Web Developer Intern",
-    org: "The Red Arc",
-    place: "Remote",
-    points: [
-      "AI-powered chatbot for the DataDeck platform, handling real-time queries via backend APIs.",
-      "Automated job-assignment system distributing tasks by defined logic.",
-      "Backend data handling on MySQL — storage, retrieval, processing.",
-    ],
-  },
-  {
-    period: "Apr — Jun 25",
-    role: "Software Developer Intern",
-    org: "Softtrain Solution Pvt. Ltd",
-    place: "Pune",
-    points: [
-      "Led frontend of E3L Flutter app — UI perf +20%, load time −15%.",
-      "Designed advanced UI components & animations — engagement +12%.",
-      "Drove cross-team alignment — efficiency +18%.",
-    ],
-  },
-];
-
-const projects = [
-  {
-    n: "01",
-    name: "PDFNectar.ai",
-    tag: "FULL-STACK RAG",
-    year: "2025",
-    blurb:
-      "A Retrieval-Augmented Generation platform that chunks and summarizes long PDFs in multiple languages — Groq LLM, HuggingFace embeddings, MongoDB Atlas Vector Search.",
-    stack: ["React", "FastAPI", "MongoDB", "Supabase", "Groq", "HuggingFace"],
-  },
-  {
-    n: "02",
-    name: "Medicare",
-    tag: "HEALTHCARE PLATFORM",
-    year: "2025",
-    blurb:
-      "Full-stack healthcare app — RBAC for Patients, Doctors, Admins. JWT + bcrypt auth. Automated appointment scheduling with Twilio SMS / WhatsApp.",
-    stack: ["React", "Node.js", "Express", "MongoDB", "Twilio"],
-  },
-  {
-    n: "03",
-    name: "E3L Mobile",
-    tag: "FLUTTER · ANDROID & iOS",
-    year: "2025",
-    blurb:
-      "Production Flutter mobile app. Intricate UI components, dynamic layouts and animations mirroring the brand's visual identity.",
-    stack: ["Flutter", "Dart", "Android", "iOS"],
-  },
-];
-
-const stack: Record<string, string[]> = {
-  LANGUAGES: ["JavaScript", "TypeScript", "Python", "Java", "Dart", "C/C++"],
-  FRONTEND: ["React", "Angular", "Tailwind CSS", "HTML5", "CSS3"],
-  BACKEND: ["Node.js", "Express", "FastAPI"],
-  DATA: ["MySQL", "MongoDB Atlas", "Firebase", "SQLite"],
-  "AI / ML": ["RAG", "LLM Integration", "Gemini API", "Vector Embeddings"],
-  TOOLS: ["Git", "GitHub Actions", "Postman", "REST APIs"],
-};
-
-const marqueeWords = [
-  "FULL-STACK",
-  "AI / RAG",
-  "REACT",
-  "FASTAPI",
-  "FLUTTER",
-  "NODE.JS",
-  "MONGODB",
-  "DESIGN-MINDED",
-  "BUILDS IN PUNE",
-];
-
 function Index() {
   return (
-    <div id="top" className="relative">
+    <div id="top" className="relative min-h-screen overflow-hidden">
+      {/* soft background orbs */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+        <div className="orb" style={{ width: 220, height: 220, top: 80, left: -60, background: "oklch(0.85 0.08 250)" }} />
+        <div className="orb" style={{ width: 160, height: 160, top: 240, right: 40, background: "oklch(0.85 0.08 30)" }} />
+        <div className="orb" style={{ width: 120, height: 120, bottom: 320, left: 80, background: "oklch(0.88 0.07 290)" }} />
+        <div className="orb" style={{ width: 200, height: 200, bottom: 60, right: -40, background: "oklch(0.86 0.06 220)" }} />
+      </div>
+
       <Nav />
 
       {/* HERO */}
-      <section className="pt-28 pb-12 border-b border-ink">
-        {/* Top meta row */}
-        <div className="mx-auto max-w-[1400px] px-6 grid grid-cols-12 gap-6 font-mono text-[11px] uppercase tracking-[0.2em] pb-8 border-b border-ink/30">
-          <div className="col-span-3">Vol. 01 — Portfolio</div>
-          <div className="col-span-3">Pune · Maharashtra · IN</div>
-          <div className="col-span-3">MCA · Dr. D. Y. Patil</div>
-          <div className="col-span-3 text-right flex items-center justify-end gap-2">
-            <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-            Available 2026
-          </div>
-        </div>
+      <section className="mx-auto max-w-6xl px-6 md:px-10 pt-16 md:pt-24 pb-24">
+        <span className="inline-block text-sm text-muted-foreground px-4 py-1.5 rounded-full bg-secondary/70 border border-border">
+          Personal Space
+        </span>
+        <h1 className="mt-8 font-display text-6xl md:text-8xl leading-[0.95] text-foreground">
+          Hello, I'm Vedant
+        </h1>
+        <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-xl">
+          Curious. Always building something. Still figuring it out.
+        </p>
+        <div className="divider mt-10" />
+      </section>
 
-        {/* MASSIVE TYPE */}
-        <div className="mx-auto max-w-[1400px] px-6 pt-12">
-          <h1 className="font-display font-black uppercase leading-[0.82] text-[18vw] md:text-[14vw] text-balance">
-            VEDANT<br />
-            DAMEDHAR<span className="text-accent">.</span>
-          </h1>
-        </div>
+      {/* ABOUT */}
+      <section id="about" className="mx-auto max-w-6xl px-6 md:px-10 pb-24 grid md:grid-cols-12 gap-12 items-start">
+        <div className="md:col-span-7 space-y-6">
+          <h2 className="font-serif text-3xl md:text-4xl">About Me</h2>
 
-        {/* lower hero grid */}
-        <div className="mx-auto max-w-[1400px] px-6 pt-10 grid grid-cols-12 gap-6">
-          <div className="col-span-12 md:col-span-5">
-            <p className="font-mono text-[11px] uppercase tracking-[0.2em] mb-3">
-              ▍ Currently
-            </p>
-            <p className="text-xl md:text-2xl font-medium leading-snug">
-              Building <span className="marker-underline">AI-native, full-stack products</span> — web, mobile, and everything sticky in between.
-            </p>
-          </div>
+          <p>Hello, I'm Vedant.</p>
 
-          <div className="hidden md:block md:col-span-2" />
+          <p>
+            I've always been the kind of person who can't stop tinkering — opening
+            things up, breaking them a little, putting them back together slightly
+            different. Computers just happened to be the thing that stuck.
+          </p>
 
-          <div className="col-span-12 md:col-span-5 md:border-l border-ink md:pl-6">
-            <p className="font-mono text-[11px] uppercase tracking-[0.2em] mb-3">▍ Index</p>
-            <ul className="font-mono text-sm space-y-1.5">
-              <li className="flex justify-between border-b border-ink/30 pb-1.5">
-                <a href="#work" className="hover:text-accent">01 — Selected work</a><span>03</span>
-              </li>
-              <li className="flex justify-between border-b border-ink/30 pb-1.5">
-                <a href="#experience" className="hover:text-accent">02 — Experience</a><span>02</span>
-              </li>
-              <li className="flex justify-between border-b border-ink/30 pb-1.5">
-                <a href="#stack" className="hover:text-accent">03 — Stack</a><span>06</span>
-              </li>
-              <li className="flex justify-between">
-                <a href="#contact" className="hover:text-accent">04 — Contact</a><span>↗</span>
-              </li>
+          <p>
+            I like building software the way some people like cooking — slowly,
+            with care, and a small obsession over the little details no one is
+            going to notice. Most of what I make starts as a curious question and
+            turns into something I can show a friend.
+          </p>
+
+          <p>
+            Right now I'm studying my MCA in Pune and quietly working on web and
+            mobile things on the side. I've tried a lot — frontend, backend, a
+            bit of AI, a bit of mobile — not because I'm trying to collect
+            buzzwords, but because each one taught me a new way of thinking.
+          </p>
+
+          <p>
+            I learn out loud. I ship things that are a little rough on the edges.
+            I rewrite them when I know better. I'm not in a rush to figure out
+            who I am as a developer — I'd rather just keep making things and let
+            that answer itself.
+          </p>
+
+          <p className="text-muted-foreground italic">
+            Still curious. Still building. Still figuring it out.
+          </p>
+
+          <div className="pt-6">
+            <h3 className="font-serif text-2xl">A few things I love</h3>
+            <ul className="mt-4 space-y-2 text-foreground/90">
+              <li>— Late-night coding with one good playlist on loop</li>
+              <li>— Clean interfaces that don't try too hard</li>
+              <li>— Cricket, chai, and very long walks around Pune</li>
+              <li>— Reading about how people build things, not just what they build</li>
             </ul>
           </div>
         </div>
-      </section>
 
-      {/* MARQUEE */}
-      <section className="border-b border-ink bg-ink text-paper overflow-hidden py-5">
-        <div className="marquee font-display font-black uppercase text-3xl md:text-5xl">
-          {[...marqueeWords, ...marqueeWords].map((w, i) => (
-            <span key={i} className="flex items-center gap-12">
-              {w}
-              <span className="text-accent">✦</span>
-            </span>
-          ))}
-        </div>
-      </section>
-
-      {/* ABOUT slab */}
-      <section className="border-b border-ink">
-        <div className="mx-auto max-w-[1400px] px-6 py-24 grid grid-cols-12 gap-6">
-          <div className="col-span-12 md:col-span-3">
-            <p className="font-mono text-[11px] uppercase tracking-[0.2em]">§ 00</p>
-            <h2 className="mt-3 font-display font-black uppercase text-4xl leading-none">About<span className="text-accent">.</span></h2>
-          </div>
-          <div className="col-span-12 md:col-span-9 md:border-l border-ink md:pl-10">
-            <p className="font-display text-3xl md:text-5xl font-medium leading-[1.05] text-balance">
-              I'm Vedant — a full-stack developer who likes <span className="marker-underline">shipping things</span>. Currently an MCA student at Dr. D. Y. Patil and a Full Stack Developer Intern at The Red Arc.
-            </p>
-            <p className="mt-8 text-lg max-w-2xl text-foreground/80 leading-relaxed">
-              I spend most of my time gluing React frontends to FastAPI / Node backends, plumbing LLMs into real product surfaces, and occasionally pulling Flutter apps into shape. Calm interfaces. Code that's kind to the next person reading it. That's the whole pitch.
-            </p>
+        <div className="md:col-span-5 md:sticky md:top-10">
+          <div className="rounded-3xl overflow-hidden border border-border bg-card shadow-sm">
+            <img
+              src={orbs}
+              alt="Soft illustration of overlapping circles"
+              className="w-full h-auto block"
+            />
           </div>
         </div>
       </section>
 
-      {/* WORK */}
-      <section id="work" className="border-b border-ink">
-        <SectionHead n="01" title="Selected work" right="03 projects" />
-        <div className="mx-auto max-w-[1400px] px-6">
-          {projects.map((p) => (
-            <article
-              key={p.name}
-              className="group grid grid-cols-12 gap-6 py-10 border-t border-ink hover:bg-ink hover:text-paper transition-colors cursor-default"
-            >
-              <div className="col-span-2 font-mono text-sm">
-                <p>{p.n}</p>
-                <p className="mt-1 opacity-60">{p.year}</p>
-              </div>
-              <div className="col-span-12 md:col-span-7 order-3 md:order-2">
-                <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent">{p.tag}</p>
-                <h3 className="mt-2 font-display font-black uppercase text-5xl md:text-7xl leading-[0.9]">
-                  {p.name}
-                </h3>
-                <p className="mt-5 max-w-xl text-base leading-relaxed opacity-90">{p.blurb}</p>
-              </div>
-              <div className="col-span-10 md:col-span-3 order-2 md:order-3 flex md:justify-end items-start">
-                <div className="flex flex-wrap gap-1.5 md:justify-end">
-                  {p.stack.map((s) => (
-                    <span
-                      key={s}
-                      className="font-mono text-[11px] uppercase tracking-widest px-2 py-1 border border-current"
-                    >
-                      {s}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* EXPERIENCE */}
-      <section id="experience" className="border-b border-ink">
-        <SectionHead n="02" title="Experience" right="02 roles" />
-        <div className="mx-auto max-w-[1400px] px-6">
-          {experiences.map((e) => (
-            <div key={e.org} className="grid grid-cols-12 gap-6 py-12 border-t border-ink">
-              <div className="col-span-12 md:col-span-3 font-mono text-sm uppercase tracking-widest">
-                <p>{e.period}</p>
-                <p className="mt-1 opacity-60">{e.place}</p>
-              </div>
-              <div className="col-span-12 md:col-span-9 md:border-l border-ink md:pl-10">
-                <h3 className="font-display font-black uppercase text-3xl md:text-5xl leading-[0.95]">
-                  {e.org}
-                </h3>
-                <p className="mt-2 font-mono text-sm uppercase tracking-widest">{e.role}</p>
-                <ul className="mt-6 space-y-2.5 max-w-2xl">
-                  {e.points.map((pt) => (
-                    <li key={pt} className="pl-6 relative leading-relaxed">
-                      <span className="absolute left-0 top-2.5 w-3 h-px bg-accent" />
-                      {pt}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* STACK */}
-      <section id="stack" className="border-b border-ink">
-        <SectionHead n="03" title="Stack" right="Toolbox" />
-        <div className="mx-auto max-w-[1400px] px-6 grid grid-cols-2 md:grid-cols-3">
-          {Object.entries(stack).map(([cat, items], i) => (
-            <div
-              key={cat}
-              className={`p-8 border-t border-ink ${i % 3 !== 0 ? "md:border-l" : ""} ${
-                i % 2 !== 0 ? "border-l md:border-l" : ""
-              }`}
-            >
-              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent">{cat}</p>
-              <ul className="mt-4 space-y-1.5">
-                {items.map((it) => (
-                  <li key={it} className="font-display text-xl md:text-2xl font-medium">
-                    {it}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* CONTACT */}
-      <section id="contact" className="border-b border-ink">
-        <SectionHead n="04" title="Contact" right="Say hi" />
-        <div className="mx-auto max-w-[1400px] px-6 py-20 grid grid-cols-12 gap-6">
-          <div className="col-span-12 md:col-span-7">
-            <p className="font-mono text-[11px] uppercase tracking-[0.2em] mb-6">▍ Open for</p>
-            <h3 className="font-display font-black uppercase text-5xl md:text-8xl leading-[0.88] text-balance">
-              Internships,<br />
-              freelance,<br />
-              <span className="marker-underline">collabs.</span>
-            </h3>
+      {/* CONNECT */}
+      <section id="connect" className="mx-auto max-w-6xl px-6 md:px-10 pb-32">
+        <div className="grid md:grid-cols-2 gap-10">
+          <div className="rounded-3xl border border-border bg-card p-8">
+            <h3 className="font-serif text-2xl">LinkedIn</h3>
+            <p className="mt-3 text-muted-foreground">
+              Want to connect professionally or follow what I'm exploring?
+            </p>
             <a
-              href="mailto:damedharvedant1@gmail.com"
-              className="mt-10 inline-block font-mono text-lg md:text-xl underline underline-offset-4 hover:text-accent"
+              href="https://www.linkedin.com/in/vedant-damedhar"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-5 inline-block text-foreground underline underline-offset-4 decoration-accent decoration-2 hover:decoration-foreground"
             >
-              damedharvedant1@gmail.com ↗
+              Find me on LinkedIn →
             </a>
           </div>
 
-          <div className="col-span-12 md:col-span-5 md:border-l border-ink md:pl-10">
-            <Row label="Email" value="damedharvedant1@gmail.com" href="mailto:damedharvedant1@gmail.com" />
-            <Row label="Phone" value="+91 81492 05703" href="tel:+918149205703" />
-            <Row label="GitHub" value="@IVedantD" href="https://github.com/IVedantD" />
-            <Row label="LinkedIn" value="/in/vedant-damedhar" href="https://www.linkedin.com/" />
-            <Row label="Location" value="Pune, MH, India" />
+          <div className="rounded-3xl border border-border bg-card p-8">
+            <h3 className="font-serif text-2xl">Let's Connect</h3>
+            <p className="mt-3 text-muted-foreground">
+              Curious conversations, ideas, questions, or just thinking out loud.
+            </p>
+            <a
+              href="mailto:damedharvedant1@gmail.com"
+              className="mt-5 inline-block text-foreground underline underline-offset-4 decoration-accent decoration-2 hover:decoration-foreground"
+            >
+              Say hello over email →
+            </a>
           </div>
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer>
-        <div className="mx-auto max-w-[1400px] px-6 py-10 flex flex-wrap items-center justify-between gap-4 font-mono text-[11px] uppercase tracking-[0.2em]">
-          <p>© {new Date().getFullYear()} Vedant Damedhar · All rights, no wrongs.</p>
-          <p>Designed & built from scratch in Pune.</p>
+      <footer className="border-t border-border">
+        <div className="mx-auto max-w-6xl px-6 md:px-10 py-8 text-sm text-muted-foreground flex flex-wrap items-center justify-between gap-3">
+          <p>© {new Date().getFullYear()} Vedant Damedhar</p>
+          <p>Made with care, in Pune.</p>
         </div>
       </footer>
     </div>
   );
-}
-
-function SectionHead({ n, title, right }: { n: string; title: string; right: string }) {
-  return (
-    <div className="bg-ink text-paper">
-      <div className="mx-auto max-w-[1400px] px-6 py-4 flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.2em]">
-        <span>§ {n} / {title}</span>
-        <span className="text-accent">{right} ●</span>
-      </div>
-    </div>
-  );
-}
-
-function Row({ label, value, href }: { label: string; value: string; href?: string }) {
-  const inner = (
-    <div className="grid grid-cols-12 gap-3 py-3 border-b border-ink group">
-      <span className="col-span-4 font-mono text-[11px] uppercase tracking-[0.2em] pt-1">
-        {label}
-      </span>
-      <span className="col-span-8 font-display text-lg md:text-xl group-hover:text-accent transition-colors break-words">
-        {value}
-      </span>
-    </div>
-  );
-  return href ? (
-    <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
-      {inner}
-    </a>
-  ) : inner;
 }

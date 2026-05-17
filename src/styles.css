@@ -5,12 +5,6 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --radius-sm: 0px;
-  --radius-md: 0px;
-  --radius-lg: 0px;
-  --radius-xl: 0px;
-  --radius-2xl: 0px;
-
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -31,95 +25,76 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --color-ink: var(--ink);
-  --color-paper: var(--paper);
-  --color-marker: var(--marker);
+  --color-blush: var(--blush);
+  --color-sage: var(--sage);
 
-  --font-display: "Archivo", "Helvetica Neue", system-ui, sans-serif;
-  --font-sans: "Archivo", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-display: "Caveat", "Dancing Script", cursive;
+  --font-sans: "Nunito Sans", system-ui, sans-serif;
+  --font-serif: "Fraunces", Georgia, serif;
 }
 
 :root {
-  --radius: 0;
+  --radius: 1rem;
 
-  /* Newsprint / off-white */
-  --paper: oklch(0.965 0.008 85);
-  --ink: oklch(0.14 0 0);
-  --marker: oklch(0.72 0.22 35); /* hot orange marker */
+  --paper: oklch(0.972 0.013 75);
+  --ink: oklch(0.22 0.015 250);
+  --blush: oklch(0.82 0.06 30);
+  --sage: oklch(0.78 0.04 155);
 
   --background: var(--paper);
   --foreground: var(--ink);
-  --card: var(--paper);
+  --card: oklch(0.985 0.008 75);
   --card-foreground: var(--ink);
-  --popover: var(--paper);
+  --popover: var(--card);
   --popover-foreground: var(--ink);
 
   --primary: var(--ink);
   --primary-foreground: var(--paper);
-  --secondary: oklch(0.92 0.01 85);
+  --secondary: oklch(0.94 0.012 75);
   --secondary-foreground: var(--ink);
-  --muted: oklch(0.9 0.008 85);
-  --muted-foreground: oklch(0.42 0.01 85);
-  --accent: var(--marker);
+  --muted: oklch(0.93 0.01 75);
+  --muted-foreground: oklch(0.45 0.015 250);
+  --accent: var(--blush);
   --accent-foreground: var(--ink);
 
-  --destructive: oklch(0.55 0.22 24);
+  --destructive: oklch(0.6 0.18 25);
   --destructive-foreground: var(--paper);
 
-  --border: var(--ink);
-  --input: var(--ink);
-  --ring: var(--marker);
+  --border: oklch(0.88 0.01 75);
+  --input: var(--border);
+  --ring: var(--blush);
 }
 
 @layer base {
   * { border-color: var(--color-border); }
   html { scroll-behavior: smooth; }
   body {
-    background-color: var(--color-background);
+    background: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
-    font-feature-settings: "ss01";
     -webkit-font-smoothing: antialiased;
+    font-size: 17px;
+    line-height: 1.7;
   }
-  ::selection { background: var(--marker); color: var(--ink); }
+  ::selection { background: var(--blush); color: var(--ink); }
 }
 
 @layer utilities {
-  .font-mono { font-family: var(--font-mono); }
-  .font-display { font-family: var(--font-display); letter-spacing: -0.04em; }
+  .font-display { font-family: var(--font-display); }
+  .font-serif { font-family: var(--font-serif); }
 
-  .text-balance { text-wrap: balance; }
-  .text-hairline { font-weight: 500; }
-
-  .border-ink { border-color: var(--ink); }
-
-  .grid-rule {
-    background-image: linear-gradient(to right, var(--ink) 1px, transparent 1px);
-    background-size: calc(100% / 12) 100%;
+  .orb {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(2px);
+    opacity: 0.55;
+    pointer-events: none;
   }
 
-  .marker-underline {
-    background-image: linear-gradient(var(--marker), var(--marker));
-    background-repeat: no-repeat;
-    background-position: 0 88%;
-    background-size: 100% 38%;
-    padding: 0 0.15em;
+  .divider {
+    width: 80px;
+    height: 3px;
+    border-radius: 999px;
+    background: var(--blush);
   }
-
-  .marquee {
-    display: flex;
-    gap: 3rem;
-    animation: marquee 28s linear infinite;
-    width: max-content;
-    align-items: center;
-  }
-
-  .hover-bg-ink { transition: background-color .2s, color .2s; }
-  .hover-bg-ink:hover { background-color: var(--ink); color: var(--paper); }
-}
-
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
 }
