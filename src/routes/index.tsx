@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/Nav";
-import orbs from "@/assets/orbs.jpg";
+import doodlesBg from "@/assets/doodles-bg.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
