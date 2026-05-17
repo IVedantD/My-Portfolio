@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/Nav";
+import doodlesBg from "@/assets/doodles-bg.jpg";
 import orbs from "@/assets/orbs.jpg";
 
 export const Route = createFileRoute("/")({
@@ -29,13 +30,17 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <div id="top" className="relative min-h-screen overflow-hidden">
-      {/* soft background orbs */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="orb" style={{ width: 220, height: 220, top: 80, left: -60, background: "oklch(0.85 0.08 250)" }} />
-        <div className="orb" style={{ width: 160, height: 160, top: 240, right: 40, background: "oklch(0.85 0.08 30)" }} />
-        <div className="orb" style={{ width: 120, height: 120, bottom: 320, left: 80, background: "oklch(0.88 0.07 290)" }} />
-        <div className="orb" style={{ width: 200, height: 200, bottom: 60, right: -40, background: "oklch(0.86 0.06 220)" }} />
-      </div>
+      {/* hand-drawn doodles background */}
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-0 -z-10 opacity-[0.18]"
+        style={{
+          backgroundImage: `url(${doodlesBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      />
 
       <Nav />
 
