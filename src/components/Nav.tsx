@@ -18,29 +18,26 @@ export function Nav() {
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "backdrop-blur-xl bg-background/70 border-b border-border"
-          : "bg-transparent"
+      className={`fixed top-0 inset-x-0 z-50 border-b transition-colors ${
+        scrolled ? "bg-background border-ink" : "bg-background/80 backdrop-blur border-transparent"
       }`}
     >
-      <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
-        <a href="#top" className="flex items-center gap-2 font-mono text-sm text-foreground">
-          <span className="inline-block w-2 h-2 rounded-full bg-primary shadow-[0_0_12px_var(--glow)]" />
-          vedant.dev
+      <div className="mx-auto max-w-[1400px] px-6 h-14 flex items-center justify-between">
+        <a href="#top" className="font-display text-base font-black tracking-tight">
+          VEDANT<span className="text-accent">.</span>
         </a>
-        <nav className="hidden md:flex items-center gap-8 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+        <nav className="hidden md:flex items-center gap-8 font-mono text-[11px] uppercase tracking-[0.2em]">
           {links.map((l) => (
-            <a key={l.href} href={l.href} className="hover:text-foreground transition-colors">
+            <a key={l.href} href={l.href} className="hover:text-accent transition-colors">
               {l.label}
             </a>
           ))}
         </nav>
         <a
           href="mailto:damedharvedant1@gmail.com"
-          className="hidden md:inline-flex font-mono text-xs uppercase tracking-widest px-4 py-2 rounded-md border border-border hover:border-primary hover:text-primary transition-colors"
+          className="font-mono text-[11px] uppercase tracking-[0.2em] px-3 py-1.5 border border-ink hover-bg-ink"
         >
-          Get in touch
+          Hire me ↗
         </a>
       </div>
     </header>
