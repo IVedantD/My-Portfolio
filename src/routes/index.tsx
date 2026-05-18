@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/Nav";
-import paperGrain from "@/assets/paper-grain.jpg";
+import watercolorBlob from "@/assets/watercolor-blob.jpg";
 import orbs from "@/assets/orbs.jpg";
 
 export const Route = createFileRoute("/")({
@@ -35,7 +35,7 @@ function Index() {
         aria-hidden
         className="pointer-events-none fixed inset-0 -z-10 opacity-[0.18]"
         style={{
-          backgroundImage: `url(${paperGrain})`,
+          backgroundImage: `url(${watercolorBlob})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
