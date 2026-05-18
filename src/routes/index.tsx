@@ -35,7 +35,7 @@ function Index() {
         aria-hidden
         className="pointer-events-none fixed inset-0 -z-10 opacity-[0.18]"
         style={{
-          backgroundImage: `url(${paperGrain})`,
+          backgroundImage: `url(${watercolorBlob})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
