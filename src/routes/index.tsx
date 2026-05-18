@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/Nav";
-import paperGrain from "@/assets/paper-grain.jpg";
+import watercolorBlob from "@/assets/watercolor-blob.jpg";
 import orbs from "@/assets/orbs.jpg";
 
 export const Route = createFileRoute("/")({
