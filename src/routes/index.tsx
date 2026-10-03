@@ -39,6 +39,7 @@ const projects = [
     ],
     stack: ["Node.js", "Express.js", "MySQL", "Sequelize / Prisma ORM", "System Design", "RESTful APIs"],
   },
+  {
     name: "Pet-Shop Platform",
     type: "Full-stack e-commerce",
     description:
