@@ -299,12 +299,12 @@ function Index() {
           <h2 className="font-serif text-3xl md:text-4xl">Things I've built</h2>
           <p className="max-w-md text-muted-foreground">A few projects where I followed the problem across interfaces, systems, data, and deployment.</p>
         </div>
-        <div className="mt-10 grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 sm:gap-4">
+        <div className="relative mt-10">
           <Button
             type="button"
             variant="outline"
             size="icon"
-            className="shrink-0 rounded-full bg-background/85"
+            className="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-background/90 shadow-sm sm:-left-5"
             aria-label="Previous project"
             onClick={() => scrollProjects("previous")}
           >
@@ -312,10 +312,10 @@ function Index() {
           </Button>
           <div
             ref={projectsScrollerRef}
-            className="no-scrollbar flex min-w-0 snap-x snap-mandatory gap-5 overflow-x-auto overscroll-x-contain py-2"
+            className="no-scrollbar flex w-full snap-x snap-mandatory gap-5 overflow-x-auto overscroll-x-contain py-2"
           >
             {projects.map((project, index) => (
-              <article key={project.name} className="flex min-h-[31rem] w-[88%] shrink-0 snap-start flex-col rounded-lg border border-border bg-card p-6 transition-transform duration-300 hover:-translate-y-1 sm:w-[72%] lg:w-[48%]">
+              <article key={project.name} className="flex min-h-[31rem] w-full shrink-0 snap-start flex-col rounded-lg border border-border bg-card p-6 transition-transform duration-300 hover:-translate-y-1 sm:w-[72%] lg:w-[48%]">
                 <div className="flex items-start justify-between gap-4">
                   <span className="font-display text-3xl text-accent-strong">0{index + 1}</span>
                   <span className="text-right text-xs font-semibold uppercase text-muted-foreground">{project.type}</span>
@@ -340,7 +340,7 @@ function Index() {
             type="button"
             variant="outline"
             size="icon"
-            className="shrink-0 rounded-full bg-background/85"
+            className="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-background/90 shadow-sm sm:-right-5"
             aria-label="Next project"
             onClick={() => scrollProjects("next")}
           >
