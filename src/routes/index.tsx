@@ -3,7 +3,6 @@ import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
 import { Nav } from "@/components/Nav";
 import { Button } from "@/components/ui/button";
 import doodlesBg from "@/assets/doodles-bg.jpg";
-import orbs from "@/assets/orbs.jpg";
 
 const projects = [
   {
