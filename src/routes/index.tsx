@@ -87,10 +87,11 @@ const projects = [
 
 const skillGroups = [
   { title: "Languages", items: ["Java", "C / C++", "Python", "JavaScript", "TypeScript", "Dart"] },
-  { title: "Frontend", items: ["React", "Next.js", "HTML & CSS", "Tailwind CSS", "Redux", "Flutter"] },
-  { title: "Backend", items: ["Node.js", "Express", "FastAPI", "REST APIs", "System Design", "OOP & DSA"] },
-  { title: "Data & AI", items: ["MySQL", "PostgreSQL", "MongoDB", "Redis", "RAG", "Vector Search"] },
-  { title: "Tools", items: ["Git", "Docker", "GitHub Actions", "Render", "API Integration"] },
+  { title: "Frontend", items: ["React", "Next.js", "HTML & CSS", "Tailwind CSS", "Radix UI", "Redux", "Flutter"] },
+  { title: "Backend", items: ["Node.js", "Express", "FastAPI", "REST APIs", "System Design", "OOD & DSA", "Distributed Systems", "Multithreading"] },
+  { title: "Data", items: ["MySQL", "PostgreSQL", "MongoDB", "Supabase", "Redis", "Vector Search", "Database Indexing"] },
+  { title: "AI & ML", items: ["RAG", "Gemini API", "Groq API", "HuggingFace", "Vector Embeddings"] },
+  { title: "Tools & DevOps", items: ["Git", "Docker", "GitHub Actions", "Render", "API Integration"] },
 ];
 
 const certifications = [
@@ -366,7 +367,7 @@ function Index() {
         <div className="mx-auto max-w-6xl px-6 py-24 md:px-10">
           <p className="section-kicker">03 · Tech stack</p>
           <h2 className="mt-3 max-w-xl font-serif text-3xl md:text-4xl">Tools I reach for—and keep learning</h2>
-          <div className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
             {skillGroups.map((group) => (
               <div key={group.title}>
                 <h3 className="border-b border-foreground/20 pb-3 font-serif text-lg">{group.title}</h3>
