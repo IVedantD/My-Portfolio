@@ -87,10 +87,11 @@ const projects = [
 
 const skillGroups = [
   { title: "Languages", items: ["Java", "C / C++", "Python", "JavaScript", "TypeScript", "Dart"] },
-  { title: "Frontend", items: ["React", "Next.js", "HTML & CSS", "Tailwind CSS", "Redux", "Flutter"] },
-  { title: "Backend", items: ["Node.js", "Express", "FastAPI", "REST APIs", "System Design", "OOP & DSA"] },
-  { title: "Data & AI", items: ["MySQL", "PostgreSQL", "MongoDB", "Redis", "RAG", "Vector Search"] },
-  { title: "Tools", items: ["Git", "Docker", "GitHub Actions", "Render", "API Integration"] },
+  { title: "Frontend", items: ["React", "Next.js", "HTML & CSS", "Tailwind CSS", "Radix UI", "Redux", "Flutter"] },
+  { title: "Backend", items: ["Node.js", "Express", "FastAPI", "REST APIs", "System Design", "OOD & DSA", "Distributed Systems", "Multithreading"] },
+  { title: "Data", items: ["MySQL", "PostgreSQL", "MongoDB", "Supabase", "Redis", "Vector Search", "Database Indexing"] },
+  { title: "AI & ML", items: ["RAG", "Gemini API", "Groq API", "HuggingFace", "Vector Embeddings"] },
+  { title: "Tools & DevOps", items: ["Git", "Docker", "GitHub Actions", "Render", "API Integration"] },
 ];
 
 const certifications = [
