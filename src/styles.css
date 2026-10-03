@@ -27,6 +27,9 @@
 
   --color-blush: var(--blush);
   --color-sage: var(--sage);
+  --color-blush-soft: var(--blush-soft);
+  --color-sage-soft: var(--sage-soft);
+  --color-accent-strong: var(--accent-strong);
 
   --font-display: "Caveat", "Dancing Script", cursive;
   --font-sans: "Nunito Sans", system-ui, sans-serif;
@@ -40,6 +43,9 @@
   --ink: oklch(0.22 0.015 250);
   --blush: oklch(0.82 0.06 30);
   --sage: oklch(0.78 0.04 155);
+  --blush-soft: oklch(0.94 0.025 30);
+  --sage-soft: oklch(0.93 0.025 155);
+  --accent-strong: oklch(0.52 0.09 28);
 
   --background: var(--paper);
   --foreground: var(--ink);
@@ -96,5 +102,28 @@
     height: 3px;
     border-radius: 999px;
     background: var(--blush);
+  }
+
+  .section-kicker {
+    color: var(--accent-strong);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }
