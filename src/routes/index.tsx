@@ -102,7 +102,7 @@ function Index() {
         <div className="divider mt-12" />
       </section>
 
-      <section id="about" className="scroll-mt-24 border-y border-border bg-card/55">
+      <section id="about" className="scroll-mt-24 border-y border-border bg-blush-soft/40">
         <div className="mx-auto max-w-6xl px-6 py-20 md:px-10 md:py-28">
           <p className="section-kicker">About</p>
           <h2 className="mt-4 max-w-3xl font-serif text-4xl leading-tight md:text-6xl">
