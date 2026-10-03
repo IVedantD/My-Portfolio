@@ -364,13 +364,13 @@ function Index() {
       </section>
 
       <section id="skills" className="scroll-mt-24 border-y border-border bg-sage-soft/55">
-        <div className="mx-auto max-w-6xl px-6 py-24 md:px-10">
+        <div className="mx-auto max-w-7xl px-6 py-20 md:px-10">
           <p className="section-kicker">03 · Tech stack</p>
           <h2 className="mt-3 max-w-xl font-serif text-3xl md:text-4xl">Tools I reach for—and keep learning</h2>
-          <div className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
             {skillGroups.map((group) => (
               <div key={group.title}>
-                <h3 className="border-b border-foreground/20 pb-3 font-serif text-lg">{group.title}</h3>
+                <h3 className="border-b border-foreground/20 pb-3 font-serif text-base">{group.title}</h3>
                 <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
                   {group.items.map((item) => <li key={item}>{item}</li>)}
                 </ul>
