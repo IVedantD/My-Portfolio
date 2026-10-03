@@ -42,6 +42,39 @@ const certifications = [
   { name: "Internet of Things", detail: "Elite · 60%", year: "2026" },
 ];
 
+const experience = [
+  {
+    company: "The Red Arc",
+    role: "Full Stack AI Web Developer",
+    period: "Jan 2026 – Sept 2026",
+    location: "Pune, Maharashtra",
+    highlights: [
+      "Took an AI chatbot for DataDeck from zero to production — a RAG pipeline built on FastAPI and the Gemini API that ingests long PDFs and turns them into instant, trustworthy answers for corporate decisions.",
+      "Engineered an automated job-assignment and task-dispatch system with custom backend business logic, cutting manual routing overhead and keeping work flowing without a human middleman.",
+      "Designed high-performance MySQL schemas and indexing strategies that visibly reduced query latency, and shipped end-to-end RESTful APIs with clean, object-oriented design.",
+      "Owned the messy parts too — debugging live production issues, writing unit tests, and managing Docker + CI/CD deployments all the way to cloud hosting.",
+    ],
+  },
+  {
+    company: "Softtrain Solution Pvt. Ltd",
+    role: "Software Developer Intern",
+    period: "Apr 2025 – Jul 2025",
+    location: "Pune, Maharashtra",
+    highlights: [
+      "Spearheaded frontend development for the E3L cross-platform mobile app in Flutter and Dart, reworking UI state management to cut load times by 15% and lift overall performance by 20%.",
+      "Partnered with cross-functional teams in Agile sprints — analyzing requirements, untangling stubborn bugs, and optimizing API integrations to boost feature delivery by 18%.",
+    ],
+  },
+];
+
+const experienceTakeaways = [
+  "End-to-end ownership",
+  "Production debugging",
+  "AI & LLM integration",
+  "Performance under load",
+  "Agile teamwork",
+];
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -145,14 +178,47 @@ function Index() {
       </section>
 
       <section id="experience" className="scroll-mt-24 border-y border-border bg-card/55">
-        <div className="mx-auto grid max-w-6xl gap-8 px-6 py-20 md:grid-cols-12 md:px-10">
+        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-20 md:grid-cols-12 md:px-10 md:py-28">
           <div className="md:col-span-4">
-            <p className="section-kicker">01 · Experience</p>
-            <h2 className="mt-3 font-serif text-3xl md:text-4xl">One year, many hats</h2>
+            <div className="md:sticky md:top-24">
+              <p className="section-kicker">01 · Experience</p>
+              <h2 className="mt-3 font-serif text-3xl md:text-4xl">A year of building real things</h2>
+              <p className="mt-5 leading-relaxed text-muted-foreground">
+                I've spent the last year taking real products from idea to production — owning features from the first requirement to the deployed, debugged, running system.
+              </p>
+              <div className="mt-7 flex flex-wrap gap-2">
+                {experienceTakeaways.map((item) => (
+                  <span key={item} className="rounded-full border border-border bg-secondary/70 px-3 py-1 text-xs text-muted-foreground">{item}</span>
+                ))}
+              </div>
+            </div>
           </div>
-          <div className="space-y-5 text-lg md:col-span-7 md:col-start-6">
-            <p>I've spent about a year building and improving software in professional teams—from responsive interfaces and cross-platform apps to backend systems and AI-assisted products.</p>
-            <p className="text-muted-foreground">The most valuable part wasn't a particular framework. It was learning to understand requirements, ask better questions, work through trade-offs, and take responsibility for the details that make software dependable.</p>
+          <div className="md:col-span-8">
+            <ol className="relative space-y-14 border-l border-border pl-8 md:pl-12">
+              {experience.map((job) => (
+                <li key={job.company} className="relative">
+                  <span aria-hidden className="absolute -left-[37px] top-2 h-2.5 w-2.5 rounded-full bg-accent-strong md:-left-[45px]" />
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <h3 className="font-serif text-2xl md:text-3xl">{job.role}</h3>
+                      <p className="mt-1 text-lg font-medium text-accent-strong">{job.company}</p>
+                    </div>
+                    <div className="text-right text-sm text-muted-foreground">
+                      <p className="whitespace-nowrap rounded-full border border-border bg-secondary/70 px-3 py-1">{job.period}</p>
+                      <p className="mt-2">{job.location}</p>
+                    </div>
+                  </div>
+                  <ul className="mt-6 space-y-4 leading-relaxed text-foreground/90">
+                    {job.highlights.map((highlight) => (
+                      <li key={highlight} className="flex gap-3">
+                        <span aria-hidden className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-foreground/30" />
+                        <span>{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ol>
           </div>
         </div>
       </section>
