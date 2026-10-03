@@ -166,8 +166,21 @@ function Index() {
     const scroller = projectsScrollerRef.current;
     if (!scroller) return;
 
-    scroller.scrollBy({
-      left: direction === "next" ? scroller.clientWidth * 0.82 : scroller.clientWidth * -0.82,
+    const cards = Array.from(scroller.children).filter(
+      (child): child is HTMLElement => child instanceof HTMLElement,
+    );
+    if (cards.length === 0) return;
+
+    const currentIndex = cards.reduce((closestIndex, card, index) => {
+      const currentDistance = Math.abs(cards[closestIndex].offsetLeft - scroller.scrollLeft);
+      const nextDistance = Math.abs(card.offsetLeft - scroller.scrollLeft);
+      return nextDistance < currentDistance ? index : closestIndex;
+    }, 0);
+    const offset = direction === "next" ? 1 : -1;
+    const targetIndex = Math.min(Math.max(currentIndex + offset, 0), cards.length - 1);
+
+    scroller.scrollTo({
+      left: cards[targetIndex].offsetLeft,
       behavior: "smooth",
     });
   };
