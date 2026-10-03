@@ -13,9 +13,9 @@ const projects = [
       "A full-stack document intelligence platform that turns long PDFs into searchable knowledge and delivers context-aware answers in real time.",
     highlights: [
       "Built a fault-tolerant Python and FastAPI pipeline for document extraction, vector embeddings, and semantic search.",
-      "Moved heavy embedding workloads to cloud inference, resolving memory crashes during large-file processing.",
+      "Moved heavy embedding workloads to cloud inference and combined session management with vector search to resolve memory crashes during large-file processing.",
     ],
-    stack: ["Python", "FastAPI", "React", "TypeScript", "MongoDB Atlas", "RAG", "Groq API"],
+    stack: ["Python", "FastAPI", "React", "TypeScript", "MongoDB Atlas", "Supabase", "RAG", "Groq API"],
   },
   {
     name: "Medicare",
@@ -26,7 +26,51 @@ const projects = [
       "Secured role-based user sessions with JWT authentication and bcrypt.",
       "Automated appointment scheduling and connected it to timely notification delivery.",
     ],
-    stack: ["Java", "React", "Node.js", "MongoDB", "REST APIs"],
+    stack: ["Java", "React", "Node.js", "Express", "MongoDB", "REST APIs", "JWT Auth"],
+  },
+  {
+    name: "Pet-Shop Platform",
+    type: "Full-stack e-commerce",
+    description:
+      "A modern pet commerce platform with a seamless product catalogue, fast server-rendered pages, and synchronized state across the client and database.",
+    highlights: [
+      "Used the Next.js App Router to deliver server-rendered page loading and stronger search visibility.",
+      "Architected REST APIs for inventory routing and structured MongoDB schemas for order transactions.",
+    ],
+    stack: ["Next.js", "React", "Node.js", "Express", "Tailwind CSS", "MongoDB"],
+  },
+  {
+    name: "E3L Application",
+    type: "Mobile learning ecosystem",
+    description:
+      "A cross-platform education app built around video delivery, interactive learning flows, and a fast, dependable mobile experience.",
+    highlights: [
+      "Refactored state management and asset loading to cut initial UI load times by 15% and improve runtime speed by 20%.",
+      "Integrated asynchronous APIs for real-time course tracking and user authentication.",
+    ],
+    stack: ["Flutter", "Dart", "REST APIs", "Provider", "GetX"],
+  },
+  {
+    name: "Weather App",
+    type: "Real-time forecast analytics",
+    description:
+      "A responsive weather app that turns live location, hourly forecast, and atmospheric data into a clear experience across devices.",
+    highlights: [
+      "Implemented asynchronous third-party data fetching with clear error states for unreliable networks.",
+      "Built dynamic weather visualizations with modular interface components and responsive grid layouts.",
+    ],
+    stack: ["JavaScript", "React", "Node.js", "OpenWeather API", "Tailwind CSS", "REST APIs"],
+  },
+  {
+    name: "Pig Game & Guess My Number",
+    type: "Interactive browser games",
+    description:
+      "Two zero-dependency browser games exploring JavaScript algorithms, direct DOM updates, state logic, and responsive interactions.",
+    highlights: [
+      "Designed game-state logic for score persistence, turn validation, and immediate interface updates.",
+      "Optimized event listeners and CSS transitions to keep interactions smooth at 60 frames per second.",
+    ],
+    stack: ["JavaScript", "HTML5", "CSS3", "DOM API"],
   },
   {
     name: "The Green Table",
@@ -122,8 +166,21 @@ function Index() {
     const scroller = projectsScrollerRef.current;
     if (!scroller) return;
 
-    scroller.scrollBy({
-      left: direction === "next" ? scroller.clientWidth * 0.82 : scroller.clientWidth * -0.82,
+    const cards = Array.from(scroller.children).filter(
+      (child): child is HTMLElement => child instanceof HTMLElement,
+    );
+    if (cards.length === 0) return;
+
+    const currentIndex = cards.reduce((closestIndex, card, index) => {
+      const currentDistance = Math.abs(cards[closestIndex].offsetLeft - scroller.scrollLeft);
+      const nextDistance = Math.abs(card.offsetLeft - scroller.scrollLeft);
+      return nextDistance < currentDistance ? index : closestIndex;
+    }, 0);
+    const offset = direction === "next" ? 1 : -1;
+    const targetIndex = Math.min(Math.max(currentIndex + offset, 0), cards.length - 1);
+
+    scroller.scrollTo({
+      left: cards[targetIndex].offsetLeft,
       behavior: "smooth",
     });
   };
@@ -255,12 +312,12 @@ function Index() {
           <h2 className="font-serif text-3xl md:text-4xl">Things I've built</h2>
           <p className="max-w-md text-muted-foreground">A few projects where I followed the problem across interfaces, systems, data, and deployment.</p>
         </div>
-        <div className="mt-10 grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 sm:gap-4">
+        <div className="relative mt-10">
           <Button
             type="button"
             variant="outline"
             size="icon"
-            className="shrink-0 rounded-full bg-background/85"
+            className="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-background/90 shadow-sm sm:-left-5"
             aria-label="Previous project"
             onClick={() => scrollProjects("previous")}
           >
@@ -268,10 +325,10 @@ function Index() {
           </Button>
           <div
             ref={projectsScrollerRef}
-            className="no-scrollbar flex min-w-0 snap-x snap-mandatory gap-5 overflow-x-auto overscroll-x-contain py-2"
+            className="no-scrollbar flex w-full snap-x snap-mandatory gap-5 overflow-x-auto overscroll-x-contain py-2"
           >
             {projects.map((project, index) => (
-              <article key={project.name} className="flex min-h-[31rem] w-[88%] shrink-0 snap-start flex-col rounded-lg border border-border bg-card p-6 transition-transform duration-300 hover:-translate-y-1 sm:w-[72%] lg:w-[48%]">
+              <article key={project.name} className="flex min-h-[31rem] w-full shrink-0 snap-start flex-col rounded-lg border border-border bg-card p-6 transition-transform duration-300 hover:-translate-y-1 sm:w-[72%] lg:w-[48%]">
                 <div className="flex items-start justify-between gap-4">
                   <span className="font-display text-3xl text-accent-strong">0{index + 1}</span>
                   <span className="text-right text-xs font-semibold uppercase text-muted-foreground">{project.type}</span>
@@ -296,7 +353,7 @@ function Index() {
             type="button"
             variant="outline"
             size="icon"
-            className="shrink-0 rounded-full bg-background/85"
+            className="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-background/90 shadow-sm sm:-right-5"
             aria-label="Next project"
             onClick={() => scrollProjects("next")}
           >
