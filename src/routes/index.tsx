@@ -3,7 +3,6 @@ import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
 import { Nav } from "@/components/Nav";
 import { Button } from "@/components/ui/button";
 import doodlesBg from "@/assets/doodles-bg.jpg";
-import orbs from "@/assets/orbs.jpg";
 
 const projects = [
   {
@@ -103,60 +102,44 @@ function Index() {
         <div className="divider mt-12" />
       </section>
 
-      <section id="about" className="scroll-mt-24 mx-auto grid max-w-6xl items-start gap-12 px-6 pb-24 md:grid-cols-12 md:px-10">
-        <div className="md:col-span-7 space-y-6">
-          <h2 className="font-serif text-3xl md:text-4xl">A little about me</h2>
+      <section id="about" className="scroll-mt-24 border-y border-border bg-blush-soft/40">
+        <div className="mx-auto max-w-6xl px-6 py-20 md:px-10 md:py-28">
+          <p className="section-kicker">About</p>
+          <h2 className="mt-4 max-w-3xl font-serif text-4xl leading-tight md:text-6xl">
+            A small-town kid who found magic on a screen.
+          </h2>
 
-          <p>
-            I'm Vedant—born in a small town, now based in Pune, and a recent MCA graduate. Somewhere along the way, I fell in love with making things on a screen.
+          <p className="mt-10 max-w-4xl text-xl leading-relaxed text-foreground md:text-2xl">
+            I'm Vedant—born in a small town, now based in Pune, and a recent MCA graduate with a year of building real software. Somewhere along the way, I fell in love with making things on a screen, and I never quite got over it.
           </p>
 
-          <p>
-            I didn't grow up around computers. The first time I wrote a few
-            lines of code and saw something actually happen on the screen, it
-            felt a little bit like magic. I'm honestly still chasing that
-            feeling. Most of what I build now starts the same way — a tiny
-            "wait, can I make this?" that I can't put down until I've tried.
-          </p>
+          <div className="mt-14 grid gap-12 md:grid-cols-2 md:gap-16">
+            <div className="space-y-6 text-lg leading-relaxed">
+              <p>
+                I didn't grow up around computers. The first time I wrote a few lines of code and saw something actually happen, it felt a little bit like magic. I'm honestly still chasing that feeling. Most of what I build now starts the same way—a tiny "wait, can I make this?" that I can't put down until I've tried.
+              </p>
+              <p>
+                Over the last year, I've worked on real products with real constraints: understanding what people need, collaborating with a team, chasing down stubborn bugs, and learning how good software takes shape beyond the first working version.
+              </p>
+            </div>
+            <div className="space-y-6 text-lg leading-relaxed">
+              <p>
+                I don't fit neatly into one label. Some days I'm shaping an interface, some days I'm deep in an API or database, and some days I'm figuring out how AI can make a product genuinely more useful. I like being able to follow a problem wherever it leads.
+              </p>
+              <p>
+                Outside of code, I'm usually the friend who texts at 1 AM about a song, a movie scene, or a thought that wouldn't leave me alone. I like long conversations more than long meetings, quiet mornings, loud cricket matches, and the kind of evenings where nothing is happening but everything feels okay.
+              </p>
+            </div>
+          </div>
 
-          <p>
-            Over the last year, I've worked on real products with real constraints: understanding what people need, collaborating with a team, chasing down stubborn bugs, and learning how good software takes shape beyond the first working version.
-          </p>
-
-          <p>
-            I don't fit neatly into one label. Some days I'm shaping an interface, some days I'm deep in an API or database, and some days I'm figuring out how AI can make a product genuinely more useful. I like being able to follow a problem wherever it leads.
-          </p>
-
-          <p>
-            Outside of code, I'm usually the friend who texts at 1 AM about a
-            song, a movie scene, or a thought that wouldn't leave me alone.
-            I like long conversations more than long meetings. I like quiet
-            mornings, loud cricket matches, and the kind of evenings where
-            nothing is happening but everything feels okay.
-          </p>
-
-          <p className="text-muted-foreground italic">
-            This site is small on purpose. Just enough to say hi.
-          </p>
-
-          <div className="pt-6">
+          <div className="mt-16 border-t border-border pt-10">
             <h3 className="font-serif text-2xl">Small joys</h3>
-            <ul className="mt-4 space-y-2 text-foreground/90">
+            <ul className="mt-6 grid gap-x-10 gap-y-3 text-foreground/90 sm:grid-cols-2">
               <li>— Filter coffee, the kind that takes its time</li>
               <li>— Rewatching the same three films and finding something new</li>
               <li>— The first cool breeze in Pune after a long summer</li>
               <li>— Notebooks I'll probably never finish, but keep buying anyway</li>
             </ul>
-          </div>
-        </div>
-
-        <div className="md:col-span-5 md:sticky md:top-24">
-          <div className="overflow-hidden rounded-lg border border-border bg-card shadow-sm">
-            <img
-              src={orbs}
-              alt="Soft illustration of overlapping circles"
-              className="w-full h-auto block"
-            />
           </div>
         </div>
       </section>
