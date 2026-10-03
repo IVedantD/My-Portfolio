@@ -49,10 +49,11 @@ const experience = [
     period: "Jan 2026 – Sept 2026",
     location: "Pune, Maharashtra",
     highlights: [
-      "Took an AI chatbot for DataDeck from zero to production — a RAG pipeline built on FastAPI and the Gemini API that ingests long PDFs and turns them into instant, trustworthy answers for corporate decisions.",
-      "Engineered an automated job-assignment and task-dispatch system with custom backend business logic, cutting manual routing overhead and keeping work flowing without a human middleman.",
-      "Designed high-performance MySQL schemas and indexing strategies that visibly reduced query latency, and shipped end-to-end RESTful APIs with clean, object-oriented design.",
-      "Owned the messy parts too — debugging live production issues, writing unit tests, and managing Docker + CI/CD deployments all the way to cloud hosting.",
+      "Owned 3 production platforms in parallel end to end — shaping feature roadmaps, wiring integrations, and driving each release cycle to launch.",
+      "Took an AI chatbot for DataDeck from zero to production — a RAG pipeline on FastAPI and the Gemini API that ingests long financial and corporate PDFs and turns them into instant answers for executive decisions.",
+      "Engineered an automated job-assignment and task-dispatch engine with custom backend routing logic, so work keeps moving without a human middleman.",
+      "Designed MySQL and MongoDB schemas and indexing strategies that cut query latency under real traffic, behind clean, object-oriented RESTful APIs.",
+      "Owned the messy parts too — debugging live production edge cases, writing unit tests, and running Docker + CI/CD pipelines all the way to cloud deployment.",
     ],
   },
   {
@@ -61,8 +62,8 @@ const experience = [
     period: "Apr 2025 – Jul 2025",
     location: "Pune, Maharashtra",
     highlights: [
-      "Spearheaded frontend development for the E3L cross-platform mobile app in Flutter and Dart, reworking UI state management to cut load times by 15% and lift overall performance by 20%.",
-      "Partnered with cross-functional teams in Agile sprints — analyzing requirements, untangling stubborn bugs, and optimizing API integrations to boost feature delivery by 18%.",
+      "Led the cross-platform mobile frontend for the E3L app in Flutter and Dart.",
+      "Reworked state management to cut load times by 15% and lift overall app performance by 20%, while helping the team ship sprint features 18% faster.",
     ],
   },
 ];
