@@ -82,17 +82,6 @@ const projects = [
     ],
     stack: ["JavaScript", "HTML5", "CSS3", "DOM API"],
   },
-  {
-    name: "The Green Table",
-    type: "Dining and reservations",
-    description:
-      "A full-stack reservation system designed around concurrent orders, reliable state updates, secure sessions, and fast data retrieval during busy periods.",
-    highlights: [
-      "Applied object-oriented design to manage concurrent booking flows and prevent state conflicts.",
-      "Designed indexed database queries to keep response times low under heavier traffic.",
-    ],
-    stack: ["Node.js", "Express", "MongoDB", "System Design"],
-  },
 ];
 
 const skillGroups = [
