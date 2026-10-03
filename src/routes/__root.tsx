@@ -69,6 +69,8 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
   );
 }
 
+const LazyErrorComponent = lazy(() => Promise.resolve({ default: ErrorComponent }));
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
