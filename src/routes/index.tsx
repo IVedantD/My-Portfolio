@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
+import { useRef } from "react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
 import { Nav } from "@/components/Nav";
 import { Button } from "@/components/ui/button";
 import doodlesBg from "@/assets/doodles-bg.jpg";
@@ -9,14 +10,22 @@ const projects = [
     name: "PDFNectar.ai",
     type: "AI document companion",
     description:
-      "A full-stack tool that turns long PDFs into searchable knowledge. I built the flow from secure sign-in and document processing to semantic search and clear, responsive answers.",
-    stack: ["React", "TypeScript", "FastAPI", "MongoDB", "RAG"],
+      "A full-stack document intelligence platform that turns long PDFs into searchable knowledge and delivers context-aware answers in real time.",
+    highlights: [
+      "Built a fault-tolerant Python and FastAPI pipeline for document extraction, vector embeddings, and semantic search.",
+      "Moved heavy embedding workloads to cloud inference, resolving memory crashes during large-file processing.",
+    ],
+    stack: ["Python", "FastAPI", "React", "TypeScript", "MongoDB Atlas", "RAG", "Groq API"],
   },
   {
     name: "Medicare",
     type: "Healthcare management",
     description:
       "A role-based healthcare platform for patients, doctors, and administrators, bringing appointments, secure access, and timely notifications into one place.",
+    highlights: [
+      "Secured role-based user sessions with JWT authentication and bcrypt.",
+      "Automated appointment scheduling and connected it to timely notification delivery.",
+    ],
     stack: ["Java", "React", "Node.js", "MongoDB", "REST APIs"],
   },
   {
@@ -24,6 +33,10 @@ const projects = [
     type: "Dining and reservations",
     description:
       "A full-stack reservation system designed around concurrent orders, reliable state updates, secure sessions, and fast data retrieval during busy periods.",
+    highlights: [
+      "Applied object-oriented design to manage concurrent booking flows and prevent state conflicts.",
+      "Designed indexed database queries to keep response times low under heavier traffic.",
+    ],
     stack: ["Node.js", "Express", "MongoDB", "System Design"],
   },
 ];
@@ -103,6 +116,18 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const projectsScrollerRef = useRef<HTMLDivElement>(null);
+
+  const scrollProjects = (direction: "previous" | "next") => {
+    const scroller = projectsScrollerRef.current;
+    if (!scroller) return;
+
+    scroller.scrollBy({
+      left: direction === "next" ? scroller.clientWidth * 0.82 : scroller.clientWidth * -0.82,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <div id="top" className="relative min-h-screen overflow-hidden">
       <div
@@ -230,20 +255,53 @@ function Index() {
           <h2 className="font-serif text-3xl md:text-4xl">Things I've built</h2>
           <p className="max-w-md text-muted-foreground">A few projects where I followed the problem across interfaces, systems, data, and deployment.</p>
         </div>
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
-          {projects.map((project, index) => (
-            <article key={project.name} className="flex min-h-80 flex-col rounded-lg border border-border bg-card p-6 transition-transform duration-300 hover:-translate-y-1">
-              <div className="flex items-start justify-between gap-4">
-                <span className="font-display text-3xl text-accent-strong">0{index + 1}</span>
-                <span className="text-right text-xs font-semibold uppercase text-muted-foreground">{project.type}</span>
-              </div>
-              <h3 className="mt-8 font-serif text-2xl">{project.name}</h3>
-              <p className="mt-4 text-sm leading-7 text-muted-foreground">{project.description}</p>
-              <div className="mt-auto flex flex-wrap gap-2 pt-7">
-                {project.stack.map((item) => <span key={item} className="rounded-full border border-border bg-secondary/70 px-3 py-1 text-xs">{item}</span>)}
-              </div>
-            </article>
-          ))}
+        <div className="mt-10 grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 sm:gap-4">
+          <Button
+            type="button"
+            variant="outline"
+            size="icon"
+            className="shrink-0 rounded-full bg-background/85"
+            aria-label="Previous project"
+            onClick={() => scrollProjects("previous")}
+          >
+            <ArrowLeft />
+          </Button>
+          <div
+            ref={projectsScrollerRef}
+            className="no-scrollbar flex min-w-0 snap-x snap-mandatory gap-5 overflow-x-auto overscroll-x-contain py-2"
+          >
+            {projects.map((project, index) => (
+              <article key={project.name} className="flex min-h-[31rem] w-[88%] shrink-0 snap-start flex-col rounded-lg border border-border bg-card p-6 transition-transform duration-300 hover:-translate-y-1 sm:w-[72%] lg:w-[48%]">
+                <div className="flex items-start justify-between gap-4">
+                  <span className="font-display text-3xl text-accent-strong">0{index + 1}</span>
+                  <span className="text-right text-xs font-semibold uppercase text-muted-foreground">{project.type}</span>
+                </div>
+                <h3 className="mt-7 font-serif text-2xl">{project.name}</h3>
+                <p className="mt-4 text-sm leading-7 text-muted-foreground">{project.description}</p>
+                <ul className="mt-5 space-y-3 text-sm leading-6 text-foreground/90">
+                  {project.highlights.map((highlight) => (
+                    <li key={highlight} className="flex gap-3">
+                      <span aria-hidden className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-strong" />
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-auto flex flex-wrap gap-2 pt-7">
+                  {project.stack.map((item) => <span key={item} className="rounded-full border border-border bg-secondary/70 px-3 py-1 text-xs">{item}</span>)}
+                </div>
+              </article>
+            ))}
+          </div>
+          <Button
+            type="button"
+            variant="outline"
+            size="icon"
+            className="shrink-0 rounded-full bg-background/85"
+            aria-label="Next project"
+            onClick={() => scrollProjects("next")}
+          >
+            <ArrowRight />
+          </Button>
         </div>
       </section>
 
