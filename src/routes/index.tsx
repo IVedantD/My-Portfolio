@@ -13,9 +13,9 @@ const projects = [
       "A full-stack document intelligence platform that turns long PDFs into searchable knowledge and delivers context-aware answers in real time.",
     highlights: [
       "Built a fault-tolerant Python and FastAPI pipeline for document extraction, vector embeddings, and semantic search.",
-      "Moved heavy embedding workloads to cloud inference, resolving memory crashes during large-file processing.",
+      "Moved heavy embedding workloads to cloud inference and combined session management with vector search to resolve memory crashes during large-file processing.",
     ],
-    stack: ["Python", "FastAPI", "React", "TypeScript", "MongoDB Atlas", "RAG", "Groq API"],
+    stack: ["Python", "FastAPI", "React", "TypeScript", "MongoDB Atlas", "Supabase", "RAG", "Groq API"],
   },
   {
     name: "Medicare",
@@ -26,7 +26,51 @@ const projects = [
       "Secured role-based user sessions with JWT authentication and bcrypt.",
       "Automated appointment scheduling and connected it to timely notification delivery.",
     ],
-    stack: ["Java", "React", "Node.js", "MongoDB", "REST APIs"],
+    stack: ["Java", "React", "Node.js", "Express", "MongoDB", "REST APIs", "JWT Auth"],
+  },
+  {
+    name: "Pet-Shop Platform",
+    type: "Full-stack e-commerce",
+    description:
+      "A modern pet commerce platform with a seamless product catalogue, fast server-rendered pages, and synchronized state across the client and database.",
+    highlights: [
+      "Used the Next.js App Router to deliver server-rendered page loading and stronger search visibility.",
+      "Architected REST APIs for inventory routing and structured MongoDB schemas for order transactions.",
+    ],
+    stack: ["Next.js", "React", "Node.js", "Express", "Tailwind CSS", "MongoDB"],
+  },
+  {
+    name: "E3L Application",
+    type: "Mobile learning ecosystem",
+    description:
+      "A cross-platform education app built around video delivery, interactive learning flows, and a fast, dependable mobile experience.",
+    highlights: [
+      "Refactored state management and asset loading to cut initial UI load times by 15% and improve runtime speed by 20%.",
+      "Integrated asynchronous APIs for real-time course tracking and user authentication.",
+    ],
+    stack: ["Flutter", "Dart", "REST APIs", "Provider", "GetX"],
+  },
+  {
+    name: "Weather App",
+    type: "Real-time forecast analytics",
+    description:
+      "A responsive weather app that turns live location, hourly forecast, and atmospheric data into a clear experience across devices.",
+    highlights: [
+      "Implemented asynchronous third-party data fetching with clear error states for unreliable networks.",
+      "Built dynamic weather visualizations with modular interface components and responsive grid layouts.",
+    ],
+    stack: ["JavaScript", "React", "Node.js", "OpenWeather API", "Tailwind CSS", "REST APIs"],
+  },
+  {
+    name: "Pig Game & Guess My Number",
+    type: "Interactive browser games",
+    description:
+      "Two zero-dependency browser games exploring JavaScript algorithms, direct DOM updates, state logic, and responsive interactions.",
+    highlights: [
+      "Designed game-state logic for score persistence, turn validation, and immediate interface updates.",
+      "Optimized event listeners and CSS transitions to keep interactions smooth at 60 frames per second.",
+    ],
+    stack: ["JavaScript", "HTML5", "CSS3", "DOM API"],
   },
   {
     name: "The Green Table",
