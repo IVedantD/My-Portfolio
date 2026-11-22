@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
 import { Nav } from "@/components/Nav";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import doodlesBg from "@/assets/doodles-bg.jpg";
 
 const projects = [
@@ -10,12 +11,16 @@ const projects = [
     name: "PDFNectar.ai",
     type: "AI document companion",
     description:
-      "A full-stack document intelligence platform that turns long PDFs into searchable knowledge and delivers context-aware answers in real time.",
+      "A full-stack AI document assistant that lets users upload PDFs, generate summaries, and ask context-based questions with source citations in Hindi and English.",
     highlights: [
-      "Built a fault-tolerant Python and FastAPI pipeline for document extraction, vector embeddings, and semantic search.",
-      "Moved heavy embedding workloads to cloud inference and combined session management with vector search to resolve memory crashes during large-file processing.",
+      "Built a full-stack web app in Python, FastAPI, React, and TypeScript where users upload long PDFs and chat with their documents in real time.",
+      "Built a Retrieval-Augmented Generation (RAG) pipeline with LangChain to extract PDF text, chunk content, generate Gemini embeddings, and run semantic search.",
+      "Connected FastAPI REST endpoints to a MongoDB Atlas Vector Search index and React frontend so answers stay grounded with source citations.",
+      "Added bilingual support so users can generate summaries and ask context-aware questions in both Hindi and English.",
+      "Offloaded heavy embedding workloads to the Hugging Face Inference API after analyzing deployment logs, fixing memory crashes on large files.",
+      "Handled session state and request validation cleanly across the API and UI so multi-turn document Q&A stays responsive and reliable.",
     ],
-    stack: ["Python", "FastAPI", "React", "TypeScript", "MongoDB Atlas", "Supabase", "RAG", "Groq API"],
+    stack: ["Python", "FastAPI", "React", "TypeScript", "LangChain", "Gemini API", "Hugging Face", "MongoDB Atlas Vector Search"],
   },
   {
     name: "Medicare",
@@ -23,10 +28,14 @@ const projects = [
     description:
       "A role-based healthcare platform for patients, doctors, and administrators, bringing appointments, secure access, and timely notifications into one place.",
     highlights: [
-      "Secured role-based user sessions with JWT authentication and bcrypt.",
-      "Automated appointment scheduling and connected it to timely notification delivery.",
+      "Built separate role-based workflows and dashboard views in React for patients, doctors, and administrators so each user only sees the tools and records meant for them.",
+      "Secured user sign-in and protected routes with JWT authentication and bcrypt password hashing.",
+      "Built REST APIs in Node.js and Express to manage patient bookings, doctor availability, and administrative controls.",
+      "Structured MongoDB collections for user profiles, schedules, and appointment states so records stay organized and easy to query.",
+      "Automated appointment scheduling flows and connected them to timely notification alerts for upcoming visits and status updates.",
+      "Added request validation and clear error handling across frontend forms and backend endpoints to prevent booking conflicts and invalid inputs.",
     ],
-    stack: ["Java", "React", "Node.js", "Express", "MongoDB", "REST APIs", "JWT Auth"],
+    stack: ["React", "Node.js", "Express", "MongoDB", "REST APIs", "JWT Auth"],
   },
   {
     name: "The Green Table",
@@ -34,8 +43,12 @@ const projects = [
     description:
       "A full-stack dining and reservations platform designed around concurrent orders, reliable state updates, secure sessions, and fast data retrieval during busy periods.",
     highlights: [
-      "Applied object-oriented design to manage concurrent booking flows and prevent state conflicts.",
-      "Designed indexed database queries to keep response times low under heavier traffic.",
+      "Built full-stack table booking and dining order flows so guests and staff can reserve slots, place orders, and track table availability in real time.",
+      "Applied object-oriented design in Node.js and Express.js to structure booking rules, manage concurrent requests, and prevent double-booking or state conflicts.",
+      "Designed relational MySQL schemas and indexed queries using Sequelize / Prisma ORM to keep table lookups and order histories fast under heavier traffic.",
+      "Built clean RESTful APIs with request validation and clear error responses so overlapping reservations and invalid order states are caught early.",
+      "Added secure session handling and role-aware access controls to protect customer bookings and staff management actions.",
+      "Synchronized frontend reservation views with backend state updates so busy service hours stay responsive and consistent across screens.",
     ],
     stack: ["Node.js", "Express.js", "MySQL", "Sequelize / Prisma ORM", "System Design", "RESTful APIs"],
   },
@@ -45,8 +58,12 @@ const projects = [
     description:
       "A modern pet commerce platform with a seamless product catalogue, fast server-rendered pages, and synchronized state across the client and database.",
     highlights: [
-      "Used the Next.js App Router to deliver server-rendered page loading and stronger search visibility.",
-      "Architected REST APIs for inventory routing and structured MongoDB schemas for order transactions.",
+      "Built responsive product browsing, filtering, and cart interfaces in React, Next.js, and Tailwind CSS so shoppers can explore items smoothly across devices.",
+      "Used the Next.js App Router for server-rendered product pages, improving initial page load speed and search visibility.",
+      "Built REST APIs in Node.js and Express to handle product catalogue queries, inventory updates, and checkout requests.",
+      "Structured MongoDB schemas for product listings, stock levels, and order transactions so purchase records stay consistent.",
+      "Kept cart and inventory state synchronized between the client UI and database to prevent stale stock or duplicate order submissions.",
+      "Added input validation and clear API error handling across product and order routes so checkout flows stay dependable.",
     ],
     stack: ["Next.js", "React", "Node.js", "Express", "Tailwind CSS", "MongoDB"],
   },
@@ -54,23 +71,16 @@ const projects = [
     name: "E3L Application",
     type: "Mobile learning ecosystem",
     description:
-      "A cross-platform education app built around video delivery, interactive learning flows, and a fast, dependable mobile experience.",
+      "A cross-platform education app built around learning modules, interactive navigation, and a fast, dependable mobile experience.",
     highlights: [
-      "Refactored state management and asset loading to cut initial UI load times by 15% and improve runtime speed by 20%.",
-      "Integrated asynchronous APIs for real-time course tracking and user authentication.",
+      "Converted the existing E3L web platform into a cross-platform mobile application using Flutter and Dart.",
+      "Built responsive mobile UI components and core screens—including the Home, Program, and G2C pages—for smooth navigation across screen sizes.",
+      "Integrated backend REST APIs into mobile views to load course content and keep user flows connected to live data.",
+      "Managed screen states and asynchronous API calls cleanly so transitions and content loading feel responsive.",
+      "Tracked down and resolved layout, styling, and navigation bugs through hands-on device testing and debugging.",
+      "Collaborated with the engineering team using Git and GitHub for version control to ship assigned features on schedule.",
     ],
-    stack: ["Flutter", "Dart", "REST APIs", "Provider", "GetX"],
-  },
-  {
-    name: "Weather App",
-    type: "Real-time forecast analytics",
-    description:
-      "A responsive weather app that turns live location, hourly forecast, and atmospheric data into a clear experience across devices.",
-    highlights: [
-      "Implemented asynchronous third-party data fetching with clear error states for unreliable networks.",
-      "Built dynamic weather visualizations with modular interface components and responsive grid layouts.",
-    ],
-    stack: ["JavaScript", "React", "Node.js", "OpenWeather API", "Tailwind CSS", "REST APIs"],
+    stack: ["Flutter", "Dart", "REST APIs", "Git", "GitHub"],
   },
   {
     name: "Pig Game & Guess My Number",
@@ -78,12 +88,101 @@ const projects = [
     description:
       "Two zero-dependency browser games exploring JavaScript algorithms, direct DOM updates, state logic, and responsive interactions.",
     highlights: [
-      "Designed game-state logic for score persistence, turn validation, and immediate interface updates.",
-      "Optimized event listeners and CSS transitions to keep interactions smooth at 60 frames per second.",
+      "Built two interactive browser games from scratch using vanilla JavaScript, HTML5, and CSS3 with zero external libraries.",
+      "Wrote game-state logic to handle player turns, active scores, high scores, and win/loss conditions cleanly.",
+      "Added input and turn validation—such as handling dice roll resets, guess limits, and invalid or out-of-range guesses—so game states never break mid-round.",
+      "Updated DOM elements directly on user actions to keep scoreboards, hints, and status messages immediate and clear.",
+      "Used event listeners and CSS transitions to keep button clicks and visual feedback smooth and responsive across screen sizes.",
+      "Structured the game functions and reset flows clearly so starting a new round or debugging edge cases stayed straightforward.",
     ],
     stack: ["JavaScript", "HTML5", "CSS3", "DOM API"],
   },
 ];
+
+type Project = (typeof projects)[number];
+
+function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const highlightsRef = useRef<HTMLUListElement>(null);
+  const [overflows, setOverflows] = useState(false);
+  const [clipsLastLine, setClipsLastLine] = useState(false);
+
+  useLayoutEffect(() => {
+    const list = highlightsRef.current;
+    if (!list) return;
+
+    const measure = () => {
+      const limit = list.clientHeight;
+      const items = [...list.querySelectorAll("li")];
+      setOverflows(list.scrollHeight > limit + 1);
+      setClipsLastLine(items.some((item) => item.offsetTop < limit && item.offsetTop + item.offsetHeight > limit + 1));
+    };
+
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(list);
+    return () => observer.disconnect();
+  }, [project.highlights]);
+
+  return (
+    <article className="flex h-[34rem] w-full shrink-0 snap-start flex-col rounded-lg border border-border bg-card p-6 transition-transform duration-300 hover:-translate-y-1 sm:w-[72%] lg:w-[48%]">
+      <div className="flex items-start justify-between gap-4">
+        <span className="font-display text-3xl text-accent-strong">0{index + 1}</span>
+        <span className="text-right text-xs font-semibold uppercase text-muted-foreground">{project.type}</span>
+      </div>
+      <h3 className="mt-7 font-serif text-2xl">{project.name}</h3>
+      <p className="mt-4 text-sm leading-7 text-muted-foreground">{project.description}</p>
+      <div className="relative mt-5 min-h-0 flex-1">
+        <ul ref={highlightsRef} className="h-full space-y-3 overflow-hidden text-sm leading-6 text-foreground/90">
+          {project.highlights.map((highlight) => (
+            <li key={highlight} className="flex gap-3">
+              <span aria-hidden className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-strong" />
+              <span>{highlight}</span>
+            </li>
+          ))}
+        </ul>
+        {clipsLastLine ? <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-5 bg-gradient-to-t from-card to-transparent" /> : null}
+      </div>
+      {overflows ? (
+        <Dialog>
+          <DialogTrigger asChild>
+            <button type="button" className="mt-3 self-start font-semibold text-accent-strong underline decoration-accent-strong underline-offset-2">
+              Read more
+            </button>
+          </DialogTrigger>
+          <DialogContent className="flex max-h-[min(85vh,42rem)] w-[calc(100%-2rem)] max-w-2xl flex-col gap-0 overflow-hidden border-border bg-card p-0 sm:rounded-lg">
+            <div className="overflow-y-auto px-6 py-6 pr-12">
+              <p className="text-xs font-semibold uppercase text-muted-foreground">{project.type}</p>
+              <DialogTitle className="mt-3 font-serif text-2xl font-normal tracking-normal">{project.name}</DialogTitle>
+              <DialogDescription className="mt-4 text-sm leading-7">{project.description}</DialogDescription>
+              <ul className="mt-5 space-y-3 text-sm leading-6 text-foreground/90">
+                {project.highlights.map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span aria-hidden className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-strong" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-7 flex flex-wrap gap-2">
+                {project.stack.map((item) => (
+                  <span key={item} className="rounded-full border border-border bg-secondary/70 px-3 py-1 text-xs text-foreground">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
+      ) : null}
+      <div className="mt-5 flex flex-wrap gap-2">
+        {project.stack.map((item) => (
+          <span key={item} className="rounded-full border border-border bg-secondary/70 px-3 py-1 text-xs">
+            {item}
+          </span>
+        ))}
+      </div>
+    </article>
+  );
+}
 
 const skillGroups = [
   { title: "Languages", items: ["Java", "C / C++", "Python", "JavaScript", "TypeScript", "Dart"] },
@@ -104,24 +203,65 @@ const experience = [
   {
     company: "The Red Arc",
     role: "Full Stack AI Web Developer",
-    period: "Jan 2026 – Sept 2026",
+    period: "Jan 2026 – Jul 2026",
     location: "Pune, Maharashtra",
     highlights: [
-      "Owned 3 production platforms in parallel end to end — shaping feature roadmaps, wiring integrations, and driving each release cycle to launch.",
-      "Took an AI chatbot for DataDeck from zero to production — a RAG pipeline on FastAPI and the Gemini API that ingests long financial and corporate PDFs and turns them into instant answers for executive decisions.",
-      "Engineered an automated job-assignment and task-dispatch engine with custom backend routing logic, so work keeps moving without a human middleman.",
-      "Designed MySQL and MongoDB schemas and indexing strategies that cut query latency under real traffic, behind clean, object-oriented RESTful APIs.",
-      "Owned the messy parts too — debugging live production edge cases, writing unit tests, and running Docker + CI/CD pipelines all the way to cloud deployment.",
+      {
+        label: "Full-Stack Feature Delivery",
+        text: "Built and shipped end-to-end features across live web and AI products by connecting frontend UI views with backend REST APIs so ideas reach real users as working software.",
+      },
+      {
+        label: "Backend APIs & Data Layer",
+        text: "Developed Python and FastAPI backend services backed by MySQL and MongoDB Atlas Vector Search to handle request validation, structured data storage, and semantic retrieval.",
+      },
+      {
+        label: "RAG & Agent Pipeline (DataDeck)",
+        text: "Built a RAG chatbot and LangGraph agent workflow over financial and ESG documents using LangChain and Gemini—combining vector search, tool/function calling, and structured outputs wired to frontend views.",
+      },
+      {
+        label: "Background Automation & Routing",
+        text: "Automated background task assignment and backend routing logic so routine jobs move through the system without manual handoffs.",
+      },
+      {
+        label: "Testing, Code Reviews & AI Workflows",
+        text: "Cut post-deployment defects by 25% by writing automated tests, checking changes in a sandbox, doing code reviews, and using AI coding tools alongside manual verification.",
+      },
+      {
+        label: "Production Bug Fixes & Rate Limiting",
+        text: "Fixed a bug where user state was lost on page refresh and added Redis rate limiting in FastAPI to protect backend endpoints under load.",
+      },
     ],
   },
   {
     company: "Softtrain Solution Pvt. Ltd",
     role: "Software Developer Intern",
-    period: "Apr 2025 – Jul 2025",
+    period: "Apr 2025 – Jun 2025",
     location: "Pune, Maharashtra",
     highlights: [
-      "Led the cross-platform mobile frontend for the E3L app in Flutter and Dart.",
-      "Reworked state management to cut load times by 15% and lift overall app performance by 20%, while helping the team ship sprint features 18% faster.",
+      {
+        label: "Web-to-Mobile App Conversion",
+        text: "Turned the E3L web platform into a cross-platform mobile app using Flutter and Dart so users could access learning features on mobile devices.",
+      },
+      {
+        label: "Core Mobile Screens & UI",
+        text: "Built responsive UI screens and components—including the Home, Program, and G2C pages—focused on clear layout and smooth navigation.",
+      },
+      {
+        label: "REST API Integration",
+        text: "Connected mobile screens to backend REST APIs so live data and user flows worked cleanly inside the app.",
+      },
+      {
+        label: "Device Testing & Bug Fixes",
+        text: "Tracked down and resolved layout, styling, and navigation issues through hands-on mobile testing and debugging.",
+      },
+      {
+        label: "Team Collaboration & Version Control",
+        text: "Worked closely with the team using Git and GitHub to manage code changes, review updates, and ship assigned features on schedule.",
+      },
+      {
+        label: "Maintainable App Delivery",
+        text: "Kept UI components and screen updates organized so the app stayed steady and easy for the team to maintain across sprints.",
+      },
     ],
   },
 ];
@@ -210,7 +350,7 @@ function Index() {
           Hello, I'm Vedant
         </h1>
         <p className="mt-6 max-w-2xl text-lg text-muted-foreground md:text-xl">
-          I build thoughtful software across the web, full stack, and AI—always curious, always learning, and still excited when an idea becomes real.
+          I build reliable full-stack web apps, backend APIs, and practical AI features—always curious, always learning, and still excited when an idea becomes real.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Button asChild size="lg"><a href="#projects">See what I've built <ArrowUpRight /></a></Button>
@@ -293,12 +433,20 @@ function Index() {
                     </div>
                   </div>
                   <ul className="mt-6 space-y-4 leading-relaxed text-foreground/90">
-                    {job.highlights.map((highlight) => (
-                      <li key={highlight} className="flex gap-3">
-                        <span aria-hidden className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-foreground/30" />
-                        <span>{highlight}</span>
-                      </li>
-                    ))}
+                    {job.highlights.map((highlight) => {
+                      const label = typeof highlight === "string" ? null : highlight.label;
+                      const text = typeof highlight === "string" ? highlight : highlight.text;
+
+                      return (
+                        <li key={label ?? text} className="flex gap-3">
+                          <span aria-hidden className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-foreground/30" />
+                          <span>
+                            {label ? <strong className="font-semibold text-foreground">{label}: </strong> : null}
+                            {text}
+                          </span>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </li>
               ))}
@@ -326,28 +474,10 @@ function Index() {
           </Button>
           <div
             ref={projectsScrollerRef}
-            className="no-scrollbar flex w-full snap-x snap-mandatory gap-5 overflow-x-auto overscroll-x-contain py-2"
+            className="no-scrollbar flex w-full snap-x snap-mandatory items-start gap-5 overflow-x-auto overscroll-x-contain py-2"
           >
             {projects.map((project, index) => (
-              <article key={project.name} className="flex min-h-[31rem] w-full shrink-0 snap-start flex-col rounded-lg border border-border bg-card p-6 transition-transform duration-300 hover:-translate-y-1 sm:w-[72%] lg:w-[48%]">
-                <div className="flex items-start justify-between gap-4">
-                  <span className="font-display text-3xl text-accent-strong">0{index + 1}</span>
-                  <span className="text-right text-xs font-semibold uppercase text-muted-foreground">{project.type}</span>
-                </div>
-                <h3 className="mt-7 font-serif text-2xl">{project.name}</h3>
-                <p className="mt-4 text-sm leading-7 text-muted-foreground">{project.description}</p>
-                <ul className="mt-5 space-y-3 text-sm leading-6 text-foreground/90">
-                  {project.highlights.map((highlight) => (
-                    <li key={highlight} className="flex gap-3">
-                      <span aria-hidden className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-strong" />
-                      <span>{highlight}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-auto flex flex-wrap gap-2 pt-7">
-                  {project.stack.map((item) => <span key={item} className="rounded-full border border-border bg-secondary/70 px-3 py-1 text-xs">{item}</span>)}
-                </div>
-              </article>
+              <ProjectCard key={project.name} project={project} index={index} />
             ))}
           </div>
           <Button
@@ -393,7 +523,7 @@ function Index() {
             </div>
             <div className="grid gap-2 py-6 sm:grid-cols-[1fr_auto] sm:gap-6">
               <div><h3 className="font-serif text-xl">Bachelor of Computer Applications</h3><p className="mt-1 text-sm text-muted-foreground">Brijlal Biyani Science College · Amravati</p></div>
-              <div className="text-sm sm:text-right"><p>2021–2024</p><p className="text-muted-foreground">CGPA 7.8</p></div>
+              <div className="text-sm sm:text-right"><p>2021–2024</p><p className="text-muted-foreground">CGPA 7.5</p></div>
             </div>
           </div>
         </div>
